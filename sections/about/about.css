@@ -1,77 +1,77 @@
-.about-container {
-    color: #222;
+.section-container {
+    display: flex;
+    justify-content: center;
+}
+
+.inner-container {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 80vh;
-    gap: 1rem;
+    max-width: 80rem;
+    max-height: 80vh;
+}
 
-    .img-box {
-        .img-large {
-            width: auto;
-            height: 100%;
-            border-radius: 1rem;
-            box-shadow: -.5rem .5rem 1rem rgba(0, 0, 0, 0.34);
-        }
-    }
+.img-large {
+    position: relative;
+    width: auto;
+    max-height: 75vh;
+    border-radius: 1rem;
+    box-shadow: -.5rem .5rem 1rem #00000056;
+}
 
-    .text-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        text-align: justify;
-        padding: 1rem;
-        overflow-y: auto;
-        max-height: 75vh;
+.text-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: justify;
+    overflow-y: auto;
+    padding: 1rem;
+    max-height: 75vh;
+}
 
-        h1 {
-            text-align: center;
-        }
+h1 {
+    text-align: center;
+}
 
-        p {
-            text-indent: 2rem;
-            margin-bottom: 1rem;
-        }
+p {
+    text-indent: 2rem;
+    margin-bottom: 1rem;
+}
 
-        .img-small,
-        .img-large {
-            display: none;
-        }
-    }
+.img-small,
+.img-large {
+    display: none;
 }
 
 @media (max-width: 768px) {
-    .about-container {
+    .inner-container {
         flex-direction: column;
-
-        .img-box {
-            .img-small {
-                display: block;
-                width: 100%;
-                border-radius: .5rem;
-                box-shadow: -.5rem .5rem .5rem rgba(0, 0, 0, 0.13);
-            }
-
-            .img-large {
-                display: none;
-            }
-        }
-
-        .text-box {
-            width: auto;
-            max-height: none;
-        }
+        padding: 1rem;
     }
+
+    .img-small {
+        display: block;
+        width: 100%;
+        border-radius: .5rem;
+        box-shadow: -.5rem .5rem .5rem #00000021;
+    }
+
+    .img-large {
+        display: none;
+    }
+
+    .text-box {
+        width: auto;
+        max-height: none;
+    }
+
 }
 
 @media (min-width: 769px) {
-    .about-container {
-        .img-small {
-            display: none;
-        }
+    .img-small {
+        display: none;
+    }
 
-        .img-large {
-            display: block;
-        }
+    .img-large {
+        display: block;
     }
 }

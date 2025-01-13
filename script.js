@@ -1,3 +1,6 @@
+/*                                        ~~  NAV E TRANSITION  ~~                                        */
+
+
 // Selecionar links do menu e o container principal
 const navLinks = document.querySelectorAll('nav a');
 const container = document.getElementById('content');
@@ -10,7 +13,7 @@ function loadSection(section) {
     // Aguarda a transição para iniciar o carregamento
     setTimeout(() => {
         // Carregar o HTML da seção
-        fetch(`sections/${section}/${section}.html`)
+        fetch(`sections/${ section }/${ section }.html`)
             .then(response => {
                 if (!response.ok) throw new Error('Erro ao carregar o conteúdo.');
                 return response.text();
@@ -25,7 +28,7 @@ function loadSection(section) {
                 const newCss = document.createElement('link');
                 newCss.id = 'section-css';
                 newCss.rel = 'stylesheet';
-                newCss.href = `sections/${section}/${section}.css`;
+                newCss.href = `sections/${ section }/${ section }.css`;
                 document.head.appendChild(newCss);
 
                 // Carregar o JS específico
@@ -34,14 +37,14 @@ function loadSection(section) {
 
                 const newScript = document.createElement('script');
                 newScript.id = 'section-script';
-                newScript.src = `sections/${section}/${section}.js`;
+                newScript.src = `sections/${ section }/${ section }.js`;
                 document.body.appendChild(newScript);
 
                 // Tornar o conteúdo visível novamente
                 setTimeout(() => container.classList.add('visible'), 10);
             })
             .catch(error => {
-                container.innerHTML = `<p>Erro ao carregar a seção: ${error.message}</p>`;
+                container.innerHTML = `<p>Erro ao carregar a seção: ${ error.message }</p>`;
             });
     }, 500); // Tempo correspondente à transição
 }
@@ -56,4 +59,25 @@ navLinks.forEach(link => {
 });
 
 // Carregar a seção inicial
-loadSection('about');
+loadSection('home');
+
+
+/*                                          ~~  THEME TOGGLE  ~~                                          */
+
+
+// Selecionar o ícone de alternância e o elemento <body>
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Verificar o tema salvo no Local Storage (se houver)
+const savedTheme = localStorage.getItem('theme') || 'light';
+body.classList.toggle('dark-theme', savedTheme === 'dark');
+themeToggle.textContent = savedTheme === 'dark' ? 'dark_mode' : 'light_mode';
+
+// Alternar tema ao clicar no ícone
+themeToggle.addEventListener('click', () => {
+    const isDarkTheme = body.classList.toggle('dark-theme');
+    themeToggle.textContent = isDarkTheme ? 'dark_mode' : 'light_mode';
+    // Salvar a preferência no Local Storage
+    localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+})
